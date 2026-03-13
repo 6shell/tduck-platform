@@ -8,8 +8,10 @@ import com.tduck.cloud.common.exception.AuthorizationException;
 import com.tduck.cloud.common.util.SecurityUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.UrlPathHelper;
 
 import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     private final JwtUtils jwtUtils;
 
     private final UserTokenService userTokenService;
+
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+
+    private final UrlPathHelper urlPathHelper = new UrlPathHelper();
 
     public AuthorizationInterceptor(JwtUtils jwtUtils, UserTokenService userTokenService) {
         this.jwtUtils = jwtUtils;
@@ -68,8 +74,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         }
         // 设置userId到request里，后续根据userId，获取用户信息
         request.setAttribute(USER_KEY, userId);
+
+        String path = urlPathHelper.getLookupPathForRequest(request);
         // 不允许访问
-        if (StrUtil.containsAny(request.getRequestURL().toString(), "/mange/", "/system/env/")) {
+        if (pathMatcher.match("/mange/**", path) || pathMatcher.match("/system/env/**", path)) {
             if (!SecurityUtils.isAdmin(userId)) {
                 throw new AuthorizationException("无权限访问");
             }
