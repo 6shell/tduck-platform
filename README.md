@@ -158,18 +158,7 @@ docker run -d \
 ------------------------------
 
 
-### 五、社区活动
-社区版后端100%开源，前端项目表单编辑器暂未开源，该模块通过npm引用，不影响使用、二开其他功能。
-
-如有需要，您可以通过给项目助力获取社区版最新 **表单编辑器源码**！（限时）
-
-活动参与方式：[点击查看](https://doc.tduckcloud.com/openSource/activity.html)
-
-项目发展离不开您的助力，如有帮助请点亮star
-
-![登录](readmeImages/star.gif)
-
-### 六、预览-社区版 - Preview
+### 五、预览-社区版 - Preview
 
 ![登录](readmeImages/screely-1680875090915.png)
 ![我的项目](readmeImages/screely-1713235168567.png)
@@ -186,7 +175,7 @@ docker run -d \
 ![外观设置](readmeImages/screely-1680873577743.png)
 
 
-### 七、免责声明
+### 六、免责声明
 
 近期收到反馈，有用户使用 TDuck 产品从事非法活动，我们特此声明：
 
