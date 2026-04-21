@@ -79,6 +79,7 @@ public class FormDataMysqlService extends FormDataBaseService {
 
     @Override
     public FormDataTableVO search(QueryFormResultRequest request) {
+        request.validateSqlInjection();
         // 校验formKey只允许存在字符串和数字
         if (StrUtil.isBlank(request.getFormKey()) || !request.getFormKey().matches("^[a-zA-Z0-9]+$")) {
             return new FormDataTableVO();
@@ -132,6 +133,7 @@ public class FormDataMysqlService extends FormDataBaseService {
 
     @Override
     public List<Map> searchAll(QueryFormResultRequest request) {
+        request.validateSqlInjection();
         // 拼接sql
         List<UserFormDataEntity> userFormDataEntities = userFormDataMapper.selectRowsBySql("select * from fm_user_form_data where form_key = '" + request.getFormKey() + "'");
         return expandData(userFormDataEntities, null);

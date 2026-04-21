@@ -78,9 +78,7 @@ public class FormDataExportUtils {
         } else if (exportRequest.getMode().equals(MODE_SELECTED)) {
             queryFormResultRequest.setDataIds(exportRequest.getCheckboxIds());
         }
-
         List<Map> rows = null;
-
         if (exportRequest.getMode().equals(MODE_ALL)) {
             rows = formDataUtils.searchAll(queryFormResultRequest);
         } else {
