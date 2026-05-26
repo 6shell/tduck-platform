@@ -27,6 +27,7 @@ import com.tduck.cloud.form.mapper.UserFormDataMapper;
 import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
 import com.tduck.cloud.form.service.UserFormItemService;
+import com.tduck.cloud.form.util.FormAuthUtils;
 import com.tduck.cloud.form.util.FormDataUtils;
 import com.tduck.cloud.form.util.FormWebHookUtils;
 import com.tduck.cloud.form.vo.FormDataTableVO;
@@ -168,16 +169,19 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
     public Result getFormDataDetails(String dataId) {
         Map<String, Object> result = Maps.newHashMap();
         UserFormDataEntity dataEntity = this.getById(dataId);
+        if (ObjectUtil.isNull(dataEntity)) {
+            return Result.failed("数据不存在");
+        }
+        // 权限校验
+        FormAuthUtils.hasPermission(dataEntity.getFormKey());
         List<FormFieldVO> formFields = userFormItemService.listFormFields(dataEntity.getFormKey());
         // 表单字段
         result.put("formFields", formFields);
         // 表单填写数据
-        if (ObjectUtil.isNotNull(dataEntity)) {
-            Map<String, Object> originalData = dataEntity.getOriginalData();
-            dataEntity.setOriginalData(null);
-            originalData.putAll(BeanUtil.beanToMap(dataEntity, false, true));
-            result.put("formData", originalData);
-        }
+        Map<String, Object> originalData = dataEntity.getOriginalData();
+        dataEntity.setOriginalData(null);
+        originalData.putAll(BeanUtil.beanToMap(dataEntity, false, true));
+        result.put("formData", originalData);
         return Result.success(result);
     }
 }

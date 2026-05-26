@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.form.entity.UserFormLinkExtEntity;
 import com.tduck.cloud.form.service.UserFormLinkExtService;
+import com.tduck.cloud.form.util.FormAuthUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class UserFormPublishController {
      */
     @GetMapping("/user/form/link/extList/{formKey}")
     public Result listUserFormLinkExt(@PathVariable String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         List<UserFormLinkExtEntity> list = formLinkExtService.list(Wrappers.<UserFormLinkExtEntity>lambdaQuery()
                 .eq(UserFormLinkExtEntity::getFormKey, formKey));
         return Result.success(list);
@@ -45,6 +47,7 @@ public class UserFormPublishController {
      */
     @PostMapping("/user/form/link/ext")
     public Result saveUserFormLinkExt(@RequestBody UserFormLinkExtEntity entity) {
+        FormAuthUtils.hasPermission(entity.getFormKey());
         long count = formLinkExtService.count(Wrappers.<UserFormLinkExtEntity>lambdaQuery()
                 .eq(UserFormLinkExtEntity::getFormKey, entity.getFormKey()).eq(UserFormLinkExtEntity::getExtValue, entity.getExtValue()));
         if (count > 0) {
@@ -63,6 +66,7 @@ public class UserFormPublishController {
      */
     @PostMapping("/user/form/link/ext/delete")
     public Result deleteUserFormLinkExt(@RequestBody UserFormLinkExtEntity entity) {
+        FormAuthUtils.hasPermission(entity.getFormKey());
         formLinkExtService.remove(Wrappers.<UserFormLinkExtEntity>lambdaQuery()
                 .eq(UserFormLinkExtEntity::getFormKey, entity.getFormKey()).eq(UserFormLinkExtEntity::getExtValue, entity.getExtValue()));
         return Result.success();

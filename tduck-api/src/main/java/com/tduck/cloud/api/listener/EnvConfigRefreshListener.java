@@ -9,6 +9,7 @@ import com.tduck.cloud.envconfig.entity.event.EnvConfigRefreshEvent;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
 import com.tduck.cloud.wx.mp.config.WxMpConfiguration;
 import com.tduck.cloud.wx.mp.config.WxMpProperties;
+import com.tduck.cloud.ai.config.AiConfiguration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
@@ -49,6 +50,9 @@ public class EnvConfigRefreshListener {
                 WxMpProperties.MpConfig mpConfig = JsonUtils.jsonToObj(JsonUtils.objToJson(event.getConfig().getEnvValue()), WxMpProperties.MpConfig.class);
                 WxMpServiceImpl wxService = SpringContextUtils.getBean(WxMpServiceImpl.class);
                 WxMpConfiguration.setWxMpConfig(wxService, mpConfig);
+                break;
+            case ConfigConstants.DEEP_SEEK_ENV_CONFIG:
+                AiConfiguration.buildDeepSeek();
                 break;
             default:
                 break;

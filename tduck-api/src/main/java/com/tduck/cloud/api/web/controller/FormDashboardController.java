@@ -39,6 +39,7 @@ public class FormDashboardController {
      */
     @GetMapping("/user/form/report/stats")
     public Result formReportStats(String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         //浏览量
         Long viewCount = userFormViewCountService.count(formKey);
         //平均完成时间

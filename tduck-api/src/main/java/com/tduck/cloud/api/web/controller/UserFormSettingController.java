@@ -65,6 +65,7 @@ public class UserFormSettingController {
      */
     @GetMapping("/user/form/setting/{key}")
     public Result<Map<String, Object>> queryFormSettingByKey(@PathVariable("key") String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         UserFormSettingEntity setting = userFormSettingService.getFormSettingByKey(formKey);
         if (ObjectUtil.isNull(setting)) {
             return Result.success();
@@ -94,6 +95,7 @@ public class UserFormSettingController {
      */
     @GetMapping("/user/form/wx/notify-qrcode")
     public Result<String> getWxNotifyQrCode(@RequestParam("key") String formKey) throws WxErrorException {
+        FormAuthUtils.hasPermission(formKey);
         try {
             String loginSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.SUB_NOTIFY, formKey));
             //5分钟有效
@@ -112,6 +114,7 @@ public class UserFormSettingController {
      */
     @PostMapping("/user/form/wx/delete/notify-user")
     public Result<Boolean> deleteWxNotifyQrCode(@RequestParam("key") String key, @RequestParam("openId") String openId) {
+        FormAuthUtils.hasPermission(key);
         cacheUtils.removeList(StrUtil.format(WxMpRedisKeyConstants.WX_MP_SUB_NOTIFY, key), openId);
         return Result.success(true);
     }
@@ -121,6 +124,7 @@ public class UserFormSettingController {
      */
     @GetMapping("/user/form/wx/notify-user")
     public Result<List<WxMpUserVO>> getWxNotifyUser(@RequestParam("key") String formKey, @RequestParam(required = false) String openIdStr) {
+        FormAuthUtils.hasPermission(formKey);
         Set<Object> subNotifyUsers = null;
         if (StrUtil.isNotBlank(openIdStr)) {
             subNotifyUsers = Sets.newHashSet(StrUtil.splitTrim(openIdStr, ";"));

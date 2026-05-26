@@ -41,5 +41,10 @@ public interface ConfigConstants {
     String WX_PAY_ENV_CONFIG = "wxPayEnvConfig";
 
 
+    /**
+     * AI/DeepSeek配置
+     */
+    String DEEP_SEEK_ENV_CONFIG = "deepSeekEnvConfig";
 
 }
+

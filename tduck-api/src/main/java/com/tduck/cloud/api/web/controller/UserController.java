@@ -61,7 +61,13 @@ public class UserController {
         }
         WxMpUserEntity wxMpUserEntity = wxMpUserService.getByUserId(userId);
         if (ObjectUtil.isNotNull(wxMpUserEntity)) {
-            userDetailVO.setWxName(wxMpUserEntity.getNickname());
+            if (cn.hutool.core.util.StrUtil.isNotBlank(wxMpUserEntity.getNickname())) {
+                userDetailVO.setWxName(wxMpUserEntity.getNickname());
+            } else if (cn.hutool.core.util.StrUtil.isNotBlank(wxMpUserEntity.getOpenId())) {
+                userDetailVO.setWxName("微信用户(" + wxMpUserEntity.getOpenId() + ")");
+            } else {
+                userDetailVO.setWxName("微信用户");
+            }
         }
         userDetailVO.setAdmin(userEntity.isAdmin());
         return Result.success(userDetailVO);

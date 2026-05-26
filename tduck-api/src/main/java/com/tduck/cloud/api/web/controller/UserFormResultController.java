@@ -107,7 +107,6 @@ public class UserFormResultController {
      * @return 数据详情
      */
     @GetMapping("details/{dataId}")
-    @PermitAll
     public Result getFormDataDetails(@PathVariable("dataId") String dataId) {
         return formResultService.getFormDataDetails(dataId);
     }
@@ -121,6 +120,7 @@ public class UserFormResultController {
      */
     @PostMapping("/download/file")
     public Result downloadFormResultFile(@RequestBody QueryFormResultRequest request) {
+        FormAuthUtils.hasPermission(request.getFormKey());
         return formResultService.downloadFormResultFile(request);
     }
 
@@ -181,6 +181,7 @@ public class UserFormResultController {
      */
     @PostMapping("/delete/{formKey}")
     public Result deleteFormData(@RequestBody List<String> dataIdList, @PathVariable("formKey") String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         formResultService.deleteByIds(dataIdList, formKey);
         return Result.success();
     }
@@ -212,6 +213,7 @@ public class UserFormResultController {
      */
     @GetMapping("/import/template")
     public void downloadImportTemplate(HttpServletResponse response, String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         formDataImportUtils.importTemplateExcel(response, formKey);
     }
 
@@ -220,6 +222,7 @@ public class UserFormResultController {
      */
     @PostMapping("export")
     public void exportFormData(@RequestBody ExportRequest.FormData exportRequest) {
+        FormAuthUtils.hasPermission(exportRequest.getFormKey());
         formDataExportUtils.exportData(exportRequest);
     }
 
@@ -231,6 +234,7 @@ public class UserFormResultController {
      */
     @PostMapping("import")
     public Result importFormData(@RequestParam("file") MultipartFile file, UserFormDataEntity dataEntity) throws IOException {
+        FormAuthUtils.hasPermission(dataEntity.getFormKey());
         return Result.success(formDataImportUtils.importFile(file.getInputStream(), dataEntity.getFormKey()));
     }
 

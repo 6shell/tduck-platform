@@ -141,6 +141,7 @@ public class UserFormController {
      */
     @GetMapping("/user/form/{key}")
     public Result queryFormByKey(@PathVariable @NotBlank String key) {
+        FormAuthUtils.hasPermission(key);
         return Result.success(formService.getByKey(key));
     }
 
@@ -273,6 +274,7 @@ public class UserFormController {
      */
     @GetMapping("/user/form/fields/{formKey}")
     public Result queryUserFormFields(@PathVariable String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         return Result.success(formItemService.listAllFormFields(formKey));
     }
 
@@ -282,6 +284,7 @@ public class UserFormController {
      */
     @GetMapping("/user/form/fixed/fields/{formKey}")
     public Result queryUserFormFixedFields(@PathVariable String formKey) {
+        FormAuthUtils.hasPermission(formKey);
         // 查询表单类型
         UserFormEntity userFormEntity = formService.getByKey(formKey);
         List<FormFieldVO> fields = new ArrayList<>();
@@ -304,6 +307,7 @@ public class UserFormController {
     @PostMapping("/user/form/item/create")
     public Result createFormItem(@RequestBody UserFormItemEntity entity) {
         ValidatorUtils.validateEntity(entity, AddGroup.class);
+        FormAuthUtils.hasPermission(entity.getFormKey());
         if (ObjectUtil.isNull(entity.getDisplayType())) {
             entity.setDisplayType(false);
         }
@@ -322,6 +326,9 @@ public class UserFormController {
      */
     @PostMapping("/user/form/item/batch/create")
     public Result batchCreateFormItem(@RequestBody List<UserFormItemEntity> itemEntityList) {
+        if (null != itemEntityList && !itemEntityList.isEmpty()) {
+            FormAuthUtils.hasPermission(itemEntityList.get(0).getFormKey());
+        }
         //排序下标计算
         itemEntityList.forEach(item -> item.setSort(sortUtils.getInitialSortPosition(item.getFormKey())));
         boolean save = formItemService.saveBatch(itemEntityList);
@@ -363,6 +370,7 @@ public class UserFormController {
     @PostMapping("/user/form/item/sort")
     public Result sortFormItem(@RequestBody SortFormItemRequest request) {
         ValidatorUtils.validateEntity(request);
+        FormAuthUtils.hasPermission(request.getFormKey());
         if (ObjectUtil.isNull(request.getAfterPosition()) && ObjectUtil.isNull(request.getBeforePosition())) {
             return Result.success();
         }
@@ -430,6 +438,7 @@ public class UserFormController {
      */
     @PostMapping("/user/form/recycle/restore")
     public Result restoreRecycleForm(@RequestBody UserFormEntity request) {
+        FormAuthUtils.hasPermission(request.getFormKey());
         boolean flag = formService.update(new UserFormEntity() {{
             setDeleted(Boolean.FALSE);
         }}, Wrappers.<UserFormEntity>lambdaQuery().eq(UserFormEntity::getFormKey, request.getFormKey()));
