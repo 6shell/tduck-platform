@@ -159,21 +159,20 @@ docker run -d \
 
 
 ### 五、预览-社区版 - Preview
+![我的表单](readmeImages/641.png)
 
-![登录](readmeImages/screely-1680875090915.png)
-![我的项目](readmeImages/screely-1713235168567.png)
-![表单设计器](readmeImages/screely-1680873554938.png)
-![模板中心](readmeImages/screely-1680874308945.png)
-![逻辑设置](readmeImages/screely-1680873488767.png)
-![用户管理](readmeImages/screely-1713235303271.png)
-![系统配置](readmeImages/screely-1713235232698.png)
-![回收设置](readmeImages/screely-1680873612592.png)
-![数据详情](readmeImages/screely-1680873703554.png)
-![保存模板](readmeImages/screely-1680873844396.png)
-![发布表单](readmeImages/screely-1680873661475.png)
-![统计概览](readmeImages/screely-1680873817576.png)
-![外观设置](readmeImages/screely-1680873577743.png)
+![登录页](readmeImages/iShot_2026-05-27_11.53.30.png)
 
+![个人中心](readmeImages/iShot_2026-05-27_11.54.41.png)
+![用户管理](readmeImages/iShot_2026-05-27_11.54.52.png)
+![AI配置](readmeImages/iShot_2026-05-27_11.55.01.png)
+![AI建表](readmeImages/iShot_2026-05-27_11.55.35.png)
+![表单设计](readmeImages/iShot_2026-05-27_11.55.56.png)
+![逻辑设置](readmeImages/iShot_2026-05-27_11.56.11.png)
+![表单发布](readmeImages/iShot_2026-05-27_11.56.28.png)
+![趋势统计](readmeImages/iShot_2026-05-27_11.56.38.png)
+![数据分析](readmeImages/iShot_2026-05-27_11.56.49.png)
+![表单填写](readmeImages/iShot_2026-05-27_11.57.18.png)
 
 ### 六、免责声明
 
