@@ -159,7 +159,7 @@ docker run -d \
 
 
 ### 五、预览-社区版 - Preview
-![我的表单](readmeImages/641.png)
+![输入图片说明](readmeImages/iShot_2026-05-27_12.01.39.png)
 
 ![登录页](readmeImages/iShot_2026-05-27_11.53.30.png)
 
