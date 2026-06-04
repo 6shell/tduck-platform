@@ -1,13 +1,5 @@
 <p align="center">
-    <img src="https://doc-oss.tduckcloud.com/doc/favicon-blue.png" width="120" alt="TDuck Logo" />
-</p>
-
-<p align="center">
-企业级开源表单与数据采集平台
-</p>
-
-<p align="center">
-支持私有化部署 · 可视化表单设计 · API集成 · WebHook · 企业级扩展
+    <img src="https://doc-oss.tduckcloud.com/doc/favicon-blue.png" width="100" alt="TDuck Logo" />
 </p>
 
 <p align="center">
