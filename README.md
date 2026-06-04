@@ -1,31 +1,48 @@
-![输入图片说明](doc/logo-banner.png)
 <p align="center">
-    <img src='https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark' alt='star'></img>
-    <img src='https://gitee.com/TDuckApp/tduck-platform/badge/fork.svg?theme=dark' alt='fork'></img>
-    <img src='https://img.shields.io/github/stars/tduckcloud/tduck-platform?style=social' alt='star'></img>
-    <img src='https://img.shields.io/github/forks/tduckcloud/tduck-platform?style=social' alt='fork'></img>
-    <img src='https://img.shields.io/badge/TduckSurvey-V5.0-brightgreen' alt='fork'></img>
-    <img src='https://img.shields.io/badge/license-MIT%20-orange' alt='fork'></img>
-    <br />
-    <br />   
-    <a href="https://www.tduckcloud.com/" target="_blank">官方网站</a>&nbsp;
-    <a href="https://doc.tduckcloud.com"  target="_blank" >部署文档</a>&nbsp;
-    <a href="https://gitee.com/TDuckApp/tduck-platform/issues" target="_blank">用户社区</a>&nbsp;
-    <a href="https://space.bilibili.com/409825300" target="_blank">Bilibili频道</a>
+    <img src="https://doc-oss.tduckcloud.com/doc/favicon-blue.png" width="120" alt="TDuck Logo" />
 </p>
 
-**<p align="center">如果您觉得我们的开源项目有帮助，请点击 :star: Star 支持 TDuck 开源团队:heart:</p>**
+<p align="center">
+企业级开源表单与数据采集平台
+</p>
+
+<p align="center">
+支持私有化部署 · 可视化表单设计 · API集成 · WebHook · 企业级扩展
+</p>
+
+<p align="center">
+    <img src="https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark" alt="Gitee Star" />
+    <img src="https://gitee.com/TDuckApp/tduck-platform/badge/fork.svg?theme=dark" alt="Gitee Fork" />
+    <img src="https://img.shields.io/github/stars/tduckcloud/tduck-platform?style=social" alt="GitHub Stars" />
+    <img src="https://img.shields.io/github/forks/tduckcloud/tduck-platform?style=social" alt="GitHub Forks" />
+    <img src="https://img.shields.io/badge/Version-6.0-brightgreen" alt="Version" />
+    <img src="https://img.shields.io/badge/License-MIT-orange" alt="License" />
+</p>
+
+<p align="center">
+    <a href="https://www.tduckcloud.com">官方网站</a>
+    ·
+    <a href="https://doc.tduckcloud.com">部署文档</a>
+    ·
+    <a href="https://gitee.com/TDuckApp/tduck-platform/issues">用户社区</a>
+    ·
+    <a href="https://space.bilibili.com/409825300">Bilibili频道</a>
+</p>
+
+<p align="center">
+    ⭐ 如果 TDuck 对您的项目有所帮助，欢迎 Star 支持项目持续发展
+</p>
 
 ---
+
+
 
 简体中文 |  [English](./README_en.md)
 
 
-## 一、关于TDuck
+## 为什么选择 TDuck
 
-TDuck 填鸭表单是国内较早基于 Vue 技术体系打造的开源企业级表单与数据采集平台，定位于企业数字化系统中的数据入口引擎。
-
-系统融合无代码可视化设计与工程化扩展能力，既支持业务人员通过拖拽方式快速构建复杂表单，也支持技术团队进行组件级深度二次开发，满足政企私有化部署与系统集成交付需求。依托 SpringBoot + Vue 架构构建，具备稳定、可扩展、可持续演进的技术基础，可作为企业长期数字化建设中的核心模块之一。
+TDuck 是一款企业级表单与数据采集平台，支持拖拽式表单设计、私有化部署和开放集成，帮助企业快速构建业务数据入口，实现数据的高效采集与流转。相比传统 SaaS 表单产品，TDuck 提供更高的数据控制权、更灵活的部署方式以及更强的系统集成能力。
 
 ### 功能特性
 
@@ -46,18 +63,33 @@ TDuck 填鸭表单是国内较早基于 Vue 技术体系打造的开源企业级
 - 支持回收中心，快速恢复问卷。
 - 支持配置[TReport可视化大屏](https://gitee.com/TDuckApp/tduck-report-platform)，高效展示数据
 
-### 在线体验
+### 预览-社区版 - Preview
 
 如需在线体验系统👉：[官网体验地址](https://www.tduckcloud.com) 
 
-表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的伙伴可以看看 [填鸭表单产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
+![输入图片说明](readmeImages/iShot_2026-05-27_12.01.39.png)
+
+![登录页](readmeImages/iShot_2026-05-27_11.53.30.png)
+
+![个人中心](readmeImages/iShot_2026-05-27_11.54.41.png)
+![用户管理](readmeImages/iShot_2026-05-27_11.54.52.png)
+![AI配置](readmeImages/iShot_2026-05-27_11.55.01.png)
+![AI建表](readmeImages/iShot_2026-05-27_11.55.35.png)
+![表单设计](readmeImages/iShot_2026-05-27_11.55.56.png)
+![逻辑设置](readmeImages/iShot_2026-05-27_11.56.11.png)
+![表单发布](readmeImages/iShot_2026-05-27_11.56.28.png)
+![趋势统计](readmeImages/iShot_2026-05-27_11.56.38.png)
+![数据分析](readmeImages/iShot_2026-05-27_11.56.49.png)
+![表单填写](readmeImages/iShot_2026-05-27_11.57.18.png)
+
+### 版本说明
+
+
+表单系统有3个版本（社区、Pro、TDuckX） [填鸭表单产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
 
 所有版本的填鸭表单数据都可以通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
 
----
-在企业数字化建设中，表单不仅是工具，更是业务数据入口。
-选择不同形态的产品，意味着完全不同的控制权与成本结构。
 
 | 核心维度     | 传统 SaaS 表单 | TDuck 社区版        | **TDuckX/Pro 企业源码版** |
 | -------- | ---------- | ---------------- | ---------------- |
@@ -76,113 +108,32 @@ TDuck 填鸭表单是国内较早基于 Vue 技术体系打造的开源企业级
 
 > 如果您正在评估将表单系统用于商业项目或私有化交付，建议重点关注源码授权与长期成本结构。
 
----
 
-### 二、项目相关文档
+
+
+### 部署安装
+> - 部署管理员账号：admin@tduckcloud.com
+> - 部署默认密码：123456
+
+- 方式一：使用宝塔面板一键安装 🔥推荐 https://doc.tduckcloud.com/openSource/deploy/deployforbt.html
+
+- 方式二：使用Docker快速启动 https://doc.tduckcloud.com/openSource/deploy/dockerDeploy.html
+
+- 方式四：使用宝塔部署项目 https://doc.tduckcloud.com/openSource/deploy/openSourceDeploy.html
+
+- 方式五：前后端分离部署 https://doc.tduckcloud.com/openSource/deploy/fenli.html
+
+
+### 相关文档
 - [填鸭表单系列产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
 - <a href="https://doc.tduckcloud.com/openSource/deploy/deployforbt.html" target="_blank">宝塔一键安装（小白篇）</a>
 - [前端项目地址](https://gitee.com/TDuckApp/tduck-front)
 - [小程序插件](https://doc.tduckcloud.com/functionDesc/uniappDesc.html)
----
-
-### 三、项目部署
-> - 部署管理员账号：admin@tduckcloud.com
-> - 部署默认密码：123456
-
-
-#### 方式一：使用宝塔面板一键安装 🔥推荐
-详细文档：https://doc.tduckcloud.com/openSource/deploy/deployforbt.html
-
-
-*无技术难度，会安装宝塔面板即可，软件商店选择填鸭表单点击安装即可。
-
----
-
-#### 方式二：使用Docker快速启动
-
-
-```bash
-docker run -d \
-  --name tduck-platform \
-  --restart=always \
-  -p 8999:8999 \
-  -e SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3310/tduck-v4?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false&nullCatalogMeansCurrent=true" \
-  -e SPRING_DATASOURCE_USERNAME=root \
-  -e SPRING_DATASOURCE_PASSWORD=tduck@tduck \
-  -v /upload:/application/BOOT-INF/lib/upload \
-  tduckcloud/tduck-platform
-```
-
----
-
-##  📚参数说明
-
-| 参数 | 说明 |
-|------|------|
-| `--name tduck-platform` | 设置容器名称，便于后续停止/重启管理 |
-| `--restart=always` | 容器异常退出时自动重启 |
-| `-p 8999:8999` | 将容器内部 8999 端口映射到主机 |
-| `-e SPRING_DATASOURCE_URL=...` | 配置 MySQL 数据库连接 URL；注意：如果 MySQL 在宿主机上，请将 <host> 改为 host.docker.internal（Mac/Windows）或宿主机 IP（Linux）。 |
-| `-e SPRING_DATASOURCE_USERNAME` | MySQL 用户名 |
-| `-e SPRING_DATASOURCE_PASSWORD` | MySQL 密码 |
-| `-v /upload:/application/BOOT-INF/lib/upload` | 上传目录挂载，确保宿主机已有该目录 |
-
-
-
-> 注意：如果 MySQL 在宿主机上，请将 `<host>` 改为 `host.docker.internal`（Mac/Windows）或宿主机 IP（Linux）。
-
----
-
-#### 方式三：使用Docker-compose 部署环境及项目
-```shell
-1.先安装docker-compose
-2.下载tduck源码
-3.进入目录下的docker目录 cd docker，执行命令：docker-compose up
-4.运行结束 会自动安装mysql以及tduck程序
-```
----
-
-#### 方式四：使用宝塔部署项目
-- 部署文档：https://doc.tduckcloud.com/openSource/deploy/openSourceDeploy.html
-- 使用指定配置文件启动：https://doc.tduckcloud.com/openSource/deploy/startByProfile.html
-
----
-
-#### 方式五：前后端分离部署
-- 部署文档：https://doc.tduckcloud.com/openSource/deploy/fenli.html
-- 常见问题：https://doc.tduckcloud.com/openSource/deploy/usualQuestion.html
----
-
-### 四、关于问题咨询
 - 如果您在使用社区版过程中遇到了问题，可在社区查看常见问题或留言进行求助 - [点击进入填鸭问答社区](https://gitee.com/TDuckApp/tduck-platform/issues)
-------------------------------
 
 
-### 五、预览-社区版 - Preview
-![输入图片说明](readmeImages/iShot_2026-05-27_12.01.39.png)
+### License
 
-![登录页](readmeImages/iShot_2026-05-27_11.53.30.png)
-
-![个人中心](readmeImages/iShot_2026-05-27_11.54.41.png)
-![用户管理](readmeImages/iShot_2026-05-27_11.54.52.png)
-![AI配置](readmeImages/iShot_2026-05-27_11.55.01.png)
-![AI建表](readmeImages/iShot_2026-05-27_11.55.35.png)
-![表单设计](readmeImages/iShot_2026-05-27_11.55.56.png)
-![逻辑设置](readmeImages/iShot_2026-05-27_11.56.11.png)
-![表单发布](readmeImages/iShot_2026-05-27_11.56.28.png)
-![趋势统计](readmeImages/iShot_2026-05-27_11.56.38.png)
-![数据分析](readmeImages/iShot_2026-05-27_11.56.49.png)
-![表单填写](readmeImages/iShot_2026-05-27_11.57.18.png)
-
-### 六、免责声明
-
-近期收到反馈，有用户使用 TDuck 产品从事非法活动，我们特此声明：
-
-- TDuck 始终遵守国家法律法规，倡导合法合规使用产品。
-- 未授权任何代理商、经销商、分公司或合作单位，所有销售行为均通过官网或官方渠道进行。
-- 若发现非法用途，我们将配合监管部门调查并保留追责权利。
-- 所有资源使用均由用户自担风险，我们不对非法行为产生的后果负责。
-
-**请用户合法合规使用 TDuck 产品，共同维护健康、安全的开源环境。**
+MIT License
 
 
