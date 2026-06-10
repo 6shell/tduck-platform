@@ -1,8 +1,10 @@
 package com.tduck.cloud.api.web.controller;
 
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.tduck.cloud.common.util.SecurityUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tduck.cloud.common.util.QueryWrapperUtils;
 import com.tduck.cloud.common.util.Result;
@@ -46,6 +48,7 @@ public class FormTemplateController {
      */
     @PostMapping("/form/template/delete")
     public Result deleteFormTemplate(@RequestBody FormTemplateEntity templateEntity) {
+        Assert.isTrue(SecurityUtils.isAdmin(), "无权限访问");
         formTemplateService.remove(Wrappers.<FormTemplateEntity>lambdaQuery().eq(FormTemplateEntity::getFormKey, templateEntity.getFormKey()));
         return Result.success(templateEntity.getFormKey());
     }
@@ -85,6 +88,7 @@ public class FormTemplateController {
      */
     @PostMapping("/form/template/create")
     public Result createFormTemplate(@RequestBody FormTemplateEntity formTemplateEntity, @RequestAttribute Long userId) {
+        Assert.isTrue(SecurityUtils.isAdmin(), "无权限访问");
         FormTemplateEntity formTemplate = formTemplateService.createFormTemplate(formTemplateEntity);
         return Result.success(formTemplate.getFormKey());
     }
@@ -124,6 +128,7 @@ public class FormTemplateController {
      */
     @PostMapping("/form/template/category")
     public Result saveCategory(@RequestBody FormTemplateCategoryEntity fmFormTemplateCategory) {
+        Assert.isTrue(SecurityUtils.isAdmin(), "无权限访问");
         return Result.success(formTemplateCategoryService.save(fmFormTemplateCategory));
     }
 
@@ -132,6 +137,7 @@ public class FormTemplateController {
      */
     @PutMapping("/form/template/category")
     public Result updateCategory(@RequestBody FormTemplateCategoryEntity fmFormTemplateCategory) {
+        Assert.isTrue(SecurityUtils.isAdmin(), "无权限访问");
         return Result.success(formTemplateCategoryService.updateById(fmFormTemplateCategory));
     }
 
@@ -140,6 +146,7 @@ public class FormTemplateController {
      */
     @DeleteMapping("/form/template/category/{ids}")
     public Result deleteCategory(@PathVariable List<Long> ids) {
+        Assert.isTrue(SecurityUtils.isAdmin(), "无权限访问");
         return Result.success(formTemplateCategoryService.removeByIds(ids));
     }
 

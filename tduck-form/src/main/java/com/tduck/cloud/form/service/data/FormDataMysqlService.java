@@ -13,6 +13,8 @@ import com.tduck.cloud.common.entity.SysBaseEntity;
 import com.tduck.cloud.common.util.SecurityUtils;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
 import com.tduck.cloud.form.entity.struct.FormDataFilterStruct;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tduck.cloud.form.mapper.UserFormDataMapper;
 import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.vo.FormDataTableVO;
@@ -21,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -84,31 +87,28 @@ public class FormDataMysqlService extends FormDataBaseService {
         if (StrUtil.isBlank(request.getFormKey()) || !request.getFormKey().matches("^[a-zA-Z0-9]+$")) {
             return new FormDataTableVO();
         }
-        // 拼接sql
-        StringBuilder sqlBuilder = new StringBuilder();
-        sqlBuilder.append("select * from fm_user_form_data where form_key = '").append(request.getFormKey()).append("'");
-        //1. 拼接条件 查询条件 用大括号包起来 里面的条件会拼接 OR 或者 AND 不能影响其他默认附带条件 比如form_key 否则会错误查询
-        StringBuilder whereBuilder = new StringBuilder();
+
+        com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<UserFormDataEntity> wrapper = Wrappers.<UserFormDataEntity>lambdaQuery()
+                .eq(UserFormDataEntity::getFormKey, request.getFormKey());
+
         // 查询指定id数据
         if (ObjectUtil.isNotNull(request.getDataIds()) && !request.getDataIds().isEmpty()) {
-            String ids = CollUtil.join(request.getDataIds(), ",");
-            if (!ids.matches("^[\\d,]+$")) {
-                throw new IllegalArgumentException("错误的参数");
-            }
-            whereBuilder.append(" and id in (").append(ids).append(")");
+            wrapper.in(UserFormDataEntity::getId, request.getDataIds());
         }
-        // 先查询总数，查询总数后再进行拼接order by 及 limit 语句
-        StringBuilder countBuilder = new StringBuilder("select count(1) from fm_user_form_data where form_key = '").append(request.getFormKey()).append("'");
-        countBuilder.append(whereBuilder);
-        Long total = userFormDataMapper.selectCountBySql(countBuilder.toString());
 
-        whereBuilder.append(" ORDER BY id DESC");
+        // 查询总数
+        Long total = userFormDataMapper.selectCount(wrapper);
+
+        wrapper.orderByDesc(UserFormDataEntity::getId);
+
+        List<UserFormDataEntity> userFormDataEntities;
         // 分页
         if (ObjectUtil.isNotNull(request.getCurrent()) && ObjectUtil.isNotNull(request.getSize())) {
-            whereBuilder.append(" limit ").append(request.getCurrent() * request.getSize()).append(",").append(request.getSize());
+            Page<UserFormDataEntity> page = new Page<>(request.getCurrent() + 1, request.getSize(), false);
+            userFormDataEntities = userFormDataMapper.selectPage(page, wrapper).getRecords();
+        } else {
+            userFormDataEntities = userFormDataMapper.selectList(wrapper);
         }
-        sqlBuilder.append(whereBuilder);
-        List<UserFormDataEntity> userFormDataEntities = userFormDataMapper.selectRowsBySql(sqlBuilder.toString());
 
         // 过滤指定字段
         List<Map> maps = expandData(userFormDataEntities, request.getFilterFields());
@@ -134,8 +134,14 @@ public class FormDataMysqlService extends FormDataBaseService {
     @Override
     public List<Map> searchAll(QueryFormResultRequest request) {
         request.validateSqlInjection();
-        // 拼接sql
-        List<UserFormDataEntity> userFormDataEntities = userFormDataMapper.selectRowsBySql("select * from fm_user_form_data where form_key = '" + request.getFormKey() + "'");
+        // 校验formKey只允许存在字符串和数字
+        if (StrUtil.isBlank(request.getFormKey()) || !request.getFormKey().matches("^[a-zA-Z0-9]+$")) {
+            return new ArrayList<>();
+        }
+        List<UserFormDataEntity> userFormDataEntities = userFormDataMapper.selectList(
+                Wrappers.<UserFormDataEntity>lambdaQuery()
+                        .eq(UserFormDataEntity::getFormKey, request.getFormKey())
+        );
         return expandData(userFormDataEntities, null);
     }
 
