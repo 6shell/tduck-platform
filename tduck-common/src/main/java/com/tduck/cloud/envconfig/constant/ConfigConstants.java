@@ -46,5 +46,10 @@ public interface ConfigConstants {
      */
     String DEEP_SEEK_ENV_CONFIG = "deepSeekEnvConfig";
 
+    /**
+     * JWT配置
+     */
+    String JWT_ENV_CONFIG = "jwtEnvConfig";
+
 }
 

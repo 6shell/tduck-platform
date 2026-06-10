@@ -71,12 +71,12 @@ springdoc:
     # 修改Swagger UI路径
     path: /swagger-ui.html
     # 开启Swagger UI界面
-    enabled: true
+    enabled: false
   api-docs:
     # 修改api-docs路径
     path: /v3/api-docs
     # 开启api-docs
-    enabled: true
+    enabled: false
   # 配置需要生成接口文档的扫描包
   packages-to-scan: com.tduck.cloud.api.web.controller
 #  # 配置需要生成接口文档的接口路径
