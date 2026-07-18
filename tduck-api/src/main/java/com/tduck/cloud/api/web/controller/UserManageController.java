@@ -5,7 +5,7 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ObjUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tduck.cloud.common.entity.PageRequest;
 import com.tduck.cloud.account.constant.AccountConstants;
 import com.tduck.cloud.account.util.PasswordUtils;
 import com.tduck.cloud.common.util.QueryWrapperUtils;
@@ -41,11 +41,11 @@ public class UserManageController {
      * 查询用户列表
      */
     @GetMapping("/page")
-    public Result queryPage(Page page, UserEntity user) {
+    public Result queryPage(PageRequest pageRequest, UserEntity user) {
         Assert.isTrue(SecurityUtils.isAdmin());
         QueryWrapper<UserEntity> simpleQuery = QueryWrapperUtils.toSimpleQuery(user);
         simpleQuery.orderByDesc("create_time");
-        return Result.success(userService.page(page, simpleQuery));
+        return Result.success(userService.page(pageRequest.toMybatisPage(), simpleQuery));
     }
 
 

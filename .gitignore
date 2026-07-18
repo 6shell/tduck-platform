@@ -31,3 +31,7 @@ build/ !**/src/main/**/build/
 ### VS Code ###
 .vscode/
 /tduck-storage/target/
+
+# Static Resources
+/tduck-api/src/main/resources/static/
+

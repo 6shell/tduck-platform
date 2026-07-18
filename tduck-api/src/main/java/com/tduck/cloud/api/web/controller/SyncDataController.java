@@ -6,7 +6,7 @@ import cn.hutool.cache.impl.TimedCache;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tduck.cloud.common.entity.PageRequest;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.common.util.SecurityUtils;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
@@ -61,12 +61,12 @@ public class SyncDataController {
      */
     @PermitAll
     @GetMapping("/sync/form/data")
-    public Result getFormData(@RequestParam(required = true) String apiKey, Page page) {
+    public Result getFormData(@RequestParam(required = true) String apiKey, PageRequest pageRequest) {
         String formKey = apiKeyTimedCache.get(apiKey, false);
         if (!apiKeyTimedCache.containsKey(apiKey)) {
             return Result.failed("错误请求");
         }
-        return Result.success(userFormDataService.page(page, Wrappers.<UserFormDataEntity>lambdaQuery().eq(UserFormDataEntity::getFormKey, formKey)));
+        return Result.success(userFormDataService.page(pageRequest.toMybatisPage(), Wrappers.<UserFormDataEntity>lambdaQuery().eq(UserFormDataEntity::getFormKey, formKey)));
     }
 
 

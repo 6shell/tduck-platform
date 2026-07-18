@@ -5,7 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.tduck.cloud.common.util.SecurityUtils;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tduck.cloud.common.entity.PageRequest;
 import com.tduck.cloud.common.util.QueryWrapperUtils;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.form.entity.FormTemplateCategoryEntity;
@@ -111,8 +111,8 @@ public class FormTemplateController {
      * 查询项目模板分类列表
      */
     @GetMapping("/form/template/category/page")
-    public Result queryCategoryPage(Page page, FormTemplateCategoryEntity fmFormTemplateCategory) {
-        return Result.success(formTemplateCategoryService.page(page, QueryWrapperUtils.toSimpleQuery(fmFormTemplateCategory)));
+    public Result queryCategoryPage(PageRequest pageRequest, FormTemplateCategoryEntity fmFormTemplateCategory) {
+        return Result.success(formTemplateCategoryService.page(pageRequest.toMybatisPage(), QueryWrapperUtils.toSimpleQuery(fmFormTemplateCategory)));
     }
 
     /**

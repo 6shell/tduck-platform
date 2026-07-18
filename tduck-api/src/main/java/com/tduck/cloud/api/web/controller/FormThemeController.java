@@ -2,7 +2,7 @@ package com.tduck.cloud.api.web.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tduck.cloud.common.entity.PageRequest;
 import com.tduck.cloud.common.util.QueryWrapperUtils;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.form.entity.FormThemeCategoryEntity;
@@ -43,8 +43,8 @@ public class FormThemeController {
      * 查询项目主题外观模板列表
      */
     @GetMapping("/theme/page")
-    public Result queryPage(Page page, FormThemeEntity themeEntity) {
-        return Result.success(formThemeService.page(page, QueryWrapperUtils.toSimpleQuery(themeEntity)));
+    public Result queryPage(PageRequest pageRequest, FormThemeEntity themeEntity) {
+        return Result.success(formThemeService.page(pageRequest.toMybatisPage(), QueryWrapperUtils.toSimpleQuery(themeEntity)));
     }
 
     /**

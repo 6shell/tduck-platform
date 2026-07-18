@@ -6,10 +6,13 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.baomidou.mybatisplus.core.toolkit.sql.SqlInjectionUtils;
 import com.tduck.cloud.common.entity.IDictEnum;
 
 import java.beans.PropertyDescriptor;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author : wangqing
@@ -17,6 +20,10 @@ import java.util.Map;
  * @create :  2021/07/12 16:34
  **/
 public class QueryWrapperUtils {
+
+
+    private static final Pattern ORDER_BY_PATTERN = Pattern.compile("^[a-zA-Z0-9_.]+$");
+    private static final Pattern DATE_TIME_PATTERN = Pattern.compile("^[0-9\\-\\s:]+$");
 
 
     /**
@@ -79,6 +86,7 @@ public class QueryWrapperUtils {
         if (StrUtil.isBlank(orderByColumn)) {
             return;
         }
+        Assert.isFalse(SqlInjectionUtils.check(orderByColumn) || !ORDER_BY_PATTERN.matcher(orderByColumn).matches(), "参数异常");
         queryWrapper.orderBy(StrUtil.isNotBlank(orderByColumn) && StrUtil.isNotBlank(isAsc), isAsc.equals("ascending"), StrUtil.toUnderlineCase(orderByColumn));
     }
 
@@ -110,6 +118,8 @@ public class QueryWrapperUtils {
         if (StrUtil.isBlank(beginTime) || StrUtil.isBlank(endTime)) {
             return StrUtil.EMPTY;
         }
+        Assert.isFalse(SqlInjectionUtils.check(beginTime) || !DATE_TIME_PATTERN.matcher(beginTime).matches(), "参数异常");
+        Assert.isFalse(SqlInjectionUtils.check(endTime) || !DATE_TIME_PATTERN.matcher(endTime).matches(), "参数异常");
         String lastSql = StrUtil.format("  date_format(create_time,'%y%m%d') >= date_format('{}','%y%m%d') AND date_format(create_time,'%y%m%d') <= date_format('{}','%y%m%d')",
                 beginTime, endTime);
         return lastSql;
